@@ -7,6 +7,17 @@ use "/Users/ronin/Desktop/Capstone/original_data.dta"
 
 drop enum_name consent mch_funder_rand hc_pref_rand school_pref_rand trust_dist_rand trust_fms_rand trust_fgs_rand tax_willing_rand clan_tax_female_rand csupp_subclan_rand csupp_connection_rand csupp_need_rand csupp_severity_rand csupp_fundsavail_rand csupp_age_rand csupp_gender_rand csupp_likely_rand trust_dc_rand trust_hir_rand trust_gal_rand trust_punt_rand trust_sws_rand trust_fgspres_rand trust_imam_rand trust_aqil_rand
 
+***AGE BRACKET CODING***
+gen age_bracket =.
+replace age_bracket = 1 if age < 26
+replace age_bracket = 2 if age >= 26 & age < 34
+replace age_bracket = 3 if age >= 34 & age < 50
+replace age_bracket = 4 if age >= 50
+
+*Variable for Local*
+gen local = 1 if born_district == location
+replace local = 0 if born_district != location
+
 save "/Users/ronin/Desktop/Capstone/clean_data.dta", replace
 
 *Preliminary investigations into individual survey responses
@@ -19,6 +30,9 @@ tab mch_funder hc_pref
 tab school_pref
 *there is strong preference for the district government to be the provider of social services over NGOs. The question of capacity remains.
 
+*WHY would they think this? What experience with government do they have?
+*They do not like the status quo, think that different is better?
+*What has the history of government provided anything looked like?
 
 tab willing_insurance10
 tab willing_insurance5
@@ -68,13 +82,6 @@ tab trust_imam
 tab trust_aqil
 *trust in imam and aqil much higher than government officials (unsurprising)
 
-
-***AGE BRACKET CODING***
-gen age_bracket =.
-replace age_bracket = 1 if age < 26
-replace age_bracket = 2 if age >= 26 & age < 34
-replace age_bracket = 3 if age >= 34 & age < 50
-replace age_bracket = 4 if age >= 50
 *not really seeing anything significant to age in responses...
 
 
@@ -87,8 +94,19 @@ tab gender clan_tax
 *There is willingness to pay taxes in order to get such services
 *There is minimal difference in levels of trust at different government levels
 
-*Clan based financial support is not as prevalent, regular, or common as we anticipated
+*Clan based financial support is not as regular, or common as we anticipated
+
 *there is ample room for the gov to provide services that actually are not being provided on a regular basis by clan relations
 *It is possible clan based support occurs only when necessary (rare) or through non-monetary channels
 
 *There appears to be little distinction in clan behaviors based on clan, age, or district, but perhaps a distinction between gender. It is unclear why.
+
+
+
+*Discussion on: how do you deal with the sampling that consilient did? Ask consilient for more detail on how they surveyed! 
+*Explain how the demographics of our sample mirror or differ the demographics of the country overall
+*do some robustness tests basically
+*be skeptical!
+*How many people did they try to ask?
+*find existing studies on this same issue (countries with weak governments and their preferences for government services) 
+*how did they define social protection systems?
