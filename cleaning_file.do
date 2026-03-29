@@ -26,7 +26,7 @@ tab mch_funder
 tab mch_time
 *potential to aggregate above categories
 tab hc_pref
-tab mch_funder hc_pref
+tab mch_funder hc_pref if mch_funder == 4 | mch_funder == 5
 tab school_pref
 *there is strong preference for the district government to be the provider of social services over NGOs. The question of capacity remains.
 
@@ -59,7 +59,7 @@ tab tax_willing
 
 tab clan_tax
 tab clan_tax_allmen
-tab clan_tax_female
+tab clan_tax_female gender
 *most are not asked to make clan contributions. Those that do mostly say all men do, only half say some or all women do.
 
 tab clan_tax clan if clan == 307 | clan == 202
@@ -110,3 +110,11 @@ tab gender clan_tax
 *How many people did they try to ask?
 *find existing studies on this same issue (countries with weak governments and their preferences for government services) 
 *how did they define social protection systems?
+
+
+
+
+
+***WORK ON JUST THE YES CLAN-TAX PEOPLE***
+
+tab gender clan_tax
